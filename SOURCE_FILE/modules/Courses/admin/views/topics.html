@@ -1,0 +1,98 @@
+<main >
+  <h1>Topics
+    <button class="btn" id="myBtn"><i class="fas fa-plus"></i>Create Topic</button>
+  </h1>
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <form method="post" action="">
+        <h2>Create Topic</h2>
+        <p>Please enter the details for the topic</p>
+        <input type="hidden" name="saveTopic" value="true">
+        <div class="form-group">
+          <label for="name">Course: </label>
+          <!-- <input type="text" id="course" name="course" > -->
+          <select name="courseid" id="name" required>
+            <option value="" selected></option>
+            <?php foreach($variable['tutorCourses'] as $c){ ?>
+            <option value="<?=$c->id ?? ''; ?>"><?=$c->name ?? '' ?></option>
+            <?php } ?>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="session">Topic Title:</label>
+          <input type="text" id="topic" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="session">Topic details: </label>
+          <input type="text" id="details" name="topicdetiles"  required>
+        </div>
+        
+       <div class="button">
+         -->
+        <input type="submit" value="Submit" class="btn2-submit">
+      </div>
+      </form>
+    </div>
+  </div>
+  <div class="cards">
+      <div class="card">
+        <div class="header">
+          <p class="alert">Total Topics
+          </p>
+        </div>
+        <span id="num"><?=count($variable['topics']); ?></span>
+      </div>
+      <div class="card">
+        <div class="header">
+         
+          <p class="alert">Total Submissions</p>
+        </div>
+        <span id="num">12</span>
+       
+      </div>
+         
+  </div>
+  <!-- input -->
+  <div class="content">
+    <form id="animated">
+    <input type="text" name="search" placeholder="Search..">
+    </form>
+    <div class="table">
+      <section class="table__body">
+        <table>
+            <thead>
+                <tr>
+                    <th> <input type="checkbox"></th>
+                    <th> Name</th>
+                    <th> Course</th>
+                    <th>Date Of Creation</th>
+                    <th></th>
+                    
+                    
+                </tr>
+            </thead>
+            <tbody>
+              <?php $i = 0; foreach($variable['topics'] as $t) { ?>
+                <tr>
+                    <td> <?=$i ?? '' ?> </td>
+                    <td> <?=$t->name ?> </td>
+                    <td>
+                      <p class="status paid">Paid</p>
+                  </td>
+                    
+                    <td> 17 Dec, 2022 </td>
+                    
+                   <td>
+                    <i  class="fas fa-trash-alt fa-lg"></i>
+                  
+                    <!-- <i onclick="document.getElementById('id01')" class="fas fa-trash-alt fa-lg"></i> -->
+                    &nbsp;
+                    <i class="fas fa-pen fa-lg" id="myBtn1"></i>
+                   </td>
+                </tr>
+              <?php $i++; } ?> 
+            </tbody>
+        </table>
+    </div>
+</div>
+</main>

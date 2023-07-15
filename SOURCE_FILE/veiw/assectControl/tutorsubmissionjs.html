@@ -1,0 +1,19 @@
+<script src="js/tutor/app.js"></script>
+<script src="js/tutor/popup.js"></script>
+<script src="js/tutor/table.js"></script> 
+<script>
+  document.getElementById('popup-button').addEventListener('click', function() {
+    document.getElementById('popup-overlay').style.display = 'block';
+  });
+  
+  document.getElementById('feedback-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+  
+    document.getElementById('name').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('feedback').value = '';
+    
+    // Close the popup
+    document.getElementById('popup-overlay').style.display = 'none';
+  });
+</script>

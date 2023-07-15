@@ -1,0 +1,130 @@
+<main >
+      <!-- <button class="btn" id="myBtn"><i class="fas fa-plus"></i>Add Tutor</button> -->
+    </h1>
+   
+  <!-- toggle -->
+    <div class="cards">
+        <div class="card">
+          <div class="header">
+           
+            <p class="alert">Total Enrollments
+              
+            </p>
+          </div>
+          <div class="graphs">
+            <span><?=count($variable['enrolls']) ?? 0 ?></span>
+           
+          </div>
+          
+        </div>
+        <div class="card">
+          <div class="header">
+           
+            <p class="alert">Total Active</p>
+          </div>
+          <div class="graphs">
+            <span><?php 
+              $i = 0;
+              foreach($variable['enrolls'] as $x){
+                if($x->status == 'active'){
+                  $i++;
+                }
+              }
+              echo $i;
+              ?></span>
+          </div>
+          
+        </div>
+        <div class="card">
+          <div class="header">
+           
+            <p class="alert">Total Pending</p>
+          </div>
+          <div class="graphs">
+            <span><?php 
+              $i = 0;
+              foreach($variable['enrolls'] as $x){
+                if($x->status == 'pending'){
+                  $i++;
+                }
+              }
+              echo $i;
+              ?></span>
+            
+          </div>
+         
+        </div>   
+    </div>
+   
+    <!-- input -->
+    <div class="content">
+      <h2>Leaner Enrollments:</h2>
+      <form id="animated">
+      <input type="text" name="search" placeholder="Search..">
+      </form>
+      <div class="table">
+        <section class="table__body">
+          <table>
+              <thead>
+                  <tr>
+                      <th> <input type="checkbox"></th>
+                      <th> Course Name <span class="icon-arrow">&DownArrow;</span></th>
+                      <th> Learner </th>
+                      <th> status</th>
+                      <th> Enrollment Date</th>
+                      <!-- <th>Pending</th>
+                      <th>Date Joined</th>   -->
+                      <th> </th>
+                  </tr>
+              </thead>
+              <tbody>
+                <?php $i = 1; foreach($variable['enrolls'] as $e) { ?>
+                  <tr>
+                      <td> <?=$i ?> </td>
+                      <td> <?=$e->course ?? '' ?></td>
+                      <td> <?=$e->learner ?? '' ?> </td>
+                      <td> <?=$e->status ?? '' ?> </td>      
+                      <td> <?=$e->date ?? '' ?></td>
+                      <!-- <td> </td>
+                      <td> </td> -->
+                      <td>
+                        <div class="menu">
+                          <button class="actionBtn">Action</button>
+                          
+                          <ul class="menu-link">
+                            <?php if(($e->status == 'pending')){ ?>
+
+                              <li><a href="index.php?seo_name=enroll_admin&amp;act=pay&amp;id=<?=$e->id ?>">Paid</a></li>
+
+                            <?php } ?>
+  
+                          </ul>
+                        </div> 
+                      </td>            
+                  </tr>
+  
+              </tbody>
+              <?php $i++; } ?>
+          </table>
+          <div class="table-btn">
+            <button class="pre">Previous</button>
+            <button class="next">Next</button>
+          </div>
+          
+      </div>
+  </div>
+  
+  </main>
+  
+  <script >
+    const allaction = document.querySelectorAll('main .menu');
+  
+   allaction.forEach(item=> {
+     const icon = item.querySelector('.actionBtn');
+     const menuLink = item.querySelector('.menu-link');
+   
+     icon.addEventListener('click', function () {
+       menuLink.classList.toggle('show');
+     })
+   })
+  </script>

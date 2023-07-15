@@ -1,0 +1,182 @@
+
+<main >
+  <h1>Courses
+    <button class="btn" id="myBtn"><i class="fas fa-plus"></i>Add Course</button>
+  </h1>
+  <!-- add course -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <form method="post" action="">
+        <input type="hidden" name="savec" value="true">
+        <h2>Add Course</h2>
+        <p>please enter the details for the Course</p>
+        <div class="form-group">
+          <label for="course_name">Course Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="tutor">Tutor</label>
+          <!-- <input type="text" id="name" name="tutor" required> -->
+          <select name="tutorid" id="tutor" required>
+            <option value="" selected></option>
+            <?php foreach($variable['tutor'] as $t) { ?>
+              <option value="<?=$t->id ?? '' ?>"><?=$t->username ?? '' ?></option>
+              <?php } ?>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="course_duration">Course Duration</label>
+          <input type="text" id="topic" name="duration" required>
+        </div>
+        <div class="form-group">
+          <label for="prerequisites">Prerequisites</label>
+          <input type="text" id="name" name="prerequisites" required>
+        </div>
+        <div class="form-group">
+          <label for="tutor">Tutor</label>
+          <!-- <input type="text" id="name" name="tutor" required> -->
+          <select name="category" id="tutor" required>
+            <option value="" selected></option>
+            <option value="UI UX Design">UI UX Design</option>
+            <option value="Web Development">Web Development</option>
+            <option value="Mobile Development">Mobile Development</option>
+            <option value="Machine learning">Machine learning</option>
+            <option value="others">Others</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="technique">Add and Evaluation Technique</label>
+          <input type="text" id="session" name="evaluation" required>
+        </div>
+        <div class="form-group">
+          <label for="outcomes">Learning Outcomes</label>
+          <input type="text" id="name" name="learningOutcome" required>
+        </div>
+        <div class="form-group">
+          <label for="about">About</label>
+          <input type="text" id="about" name="about" required>
+        </div>
+       <div class="button">
+        <button class="btn1-submit">Cancel</button>
+        <!-- <input type="submit" value="Cancel" class="btn1-submit"> -->
+        <input type="submit" value="Submit" class="btn2-submit">
+      </div>
+      </form>
+    </div>
+  </div>
+   <!-- edit course -->
+   
+  <div class="cards">
+    <div class="card">
+      <div class="header">
+       
+        <p class="alert">Total Course
+          
+        </p>
+      </div>
+      <div class="graphs">
+        <span><?=count($variable['courses']) ?? 0; ?>
+          <tr></span>
+        <div class="graph">
+          
+        </div>
+      </div>
+      
+    </div>
+    <div class="card">
+      <div class="header">
+       
+        <p class="alert">Total Topics</p>
+      </div>
+      <div class="graphs">
+        <span><?=count($variable['topics']) ?? 0; ?></span>
+        <div class="graph">
+
+        </div>
+      </div>
+      
+    </div>
+
+</div>
+  <!-- input -->
+
+  <div class="content">
+    <!-- delete form -->
+ 
+    <form id="animated">
+      <h2>Course Management</h2>
+    <input type="text" name="search" placeholder="Search..">
+    </form>
+    <div class="table">
+      <section class="table__body">
+        <table>
+            <thead>
+                <tr>
+                    <th> <input type="checkbox"></th>
+                    <th> Course Name</th>
+                    <th> Tutor Name </th>
+                    
+                    <th> Duration </th>
+                    <th> Prerequsist</th>
+                    <th> Category</th>
+                    <th> Date of Creation</th>
+                    <th>Action</th>
+                    
+                    
+                </tr>
+            </thead>
+            <tbody>
+                
+              <?php $i=1; foreach($variable['courses'] as $course) { ?>
+                <tr>
+                    <td> <?=$i ?> </td>
+                    <td>
+                      <?=$course->name ?>
+                  </td>
+                    <td> <?=$course->tutorname ?></td>
+                    
+                    <td> <?=$course->duration  ?? '' ?> </td>
+                    <td> <?=$course->prerequisites ?? '' ?> </td>
+                    <td><?=$course->category ?? '' ?> </td>
+                    <td><?=$course->created ?? '' ?> </td>
+                    <td>     
+                        <div class="menu">
+                          <button class="actionBtn">Action</button>
+                          
+                          <ul class="menu-link">
+                            <li><a href="index.php?seo_name=courses_admin&amp;act=delete&amp;id=<?=$course->id ?>">Delete</a></li>
+                            <li><a href="#">Edit</a></li>
+
+                          </ul>
+                        </div> 
+                  </td>
+                   
+                </tr>
+
+                <?php $i++; } ?>
+             
+              
+              
+            </tbody>
+            
+        </table>
+        <div class="table-btn">
+          <button class="pre">Previous</button>
+          <button class="next">Next</button>
+        </div>
+    </div>
+</div>
+</main>
+
+<script >
+     const allaction = document.querySelectorAll('main .menu');
+
+    allaction.forEach(item=> {
+      const icon = item.querySelector('.actionBtn');
+      const menuLink = item.querySelector('.menu-link');
+    
+      icon.addEventListener('click', function () {
+        menuLink.classList.toggle('show');
+      })
+    })
+</script>

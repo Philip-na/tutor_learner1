@@ -1,0 +1,92 @@
+<nav>
+    <div class="sidebar-top">
+      <span class="shrink-btn">
+        <i class='bx bx-chevron-left'></i>
+      </span>
+      <h3 class="hide">Tutor Learner</h3>
+    </div>
+
+<!--    <div class="search">
+      <i class='bx bx-search'></i>
+      <input type="text" class="hide" placeholder=" Search ...">
+    </div>-->
+
+    <div class="sidebar-links">
+      <ul>
+        <!-- <div class="active-tab"></div> -->
+        <li class="tooltip-element" data-tooltip="0">
+          <a href="home" class="active" data-active="0">
+            <div class="icon">
+              <i class="fas fa-home"></i>
+              <i class="fas fa-home"></i>
+            </div>
+            <span class="link hide">Home</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="1">
+          <a href="tutor_dashboard" data-active="1">
+            <div class="icon">
+              <i class='bx bx-folder'></i>
+              <i class='bx bxs-folder'></i>
+            </div>
+            <span class="link hide">Dashboard</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="2">
+          <a href="tutor_submission" data-active="2">
+            <div class="icon">
+              <i class='bx bx-message-square-detail'></i>
+              <i class='bx bxs-message-square-detail'></i>
+            </div>
+            <span class="link hide">Submissions</span>
+          </a>
+        </li>
+
+        <li class="tooltip-element" data-tooltip="3">
+          <a href="tutor_sessions" data-active="3">
+            <div class="icon">
+              <i class="fas fa-clock"></i>
+              <i class="fas fa-clock"></i>
+            </div>
+            <span class="link hide">sessions</span>
+          </a>
+        </li>
+        <li class="tooltip-element" data-tooltip="3">
+          <a href="tutor_progress" data-active="3">
+            <div class="icon">
+              <i class="fas fa-chart-line"></i>
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <span class="link hide">Progress</span>
+          </a>
+        </li>
+        
+      </ul>
+
+      
+
+
+    </div>
+
+    <div class="sidebar-footer">
+      <a href="#" class="account tooltip-element" data-tooltip="0">
+        <i class='bx bx-user'></i>
+      </a>
+      <div class="admin-user tooltip-element" data-tooltip="1">
+        <div class="admin-profile hide">
+          <!-- <img src="./img/face-1.png" alt=""> -->
+          <div class="admin-info">
+            <h3><?=$_SESSION['user']['name']; ?></h3>
+            <h5><?=$_SESSION['user']['email']; ?></h5>
+          </div>
+        </div>
+        <a href="index.php?module=dashboard&action=logout" class="log-out">
+          <i class='bx bx-log-out'></i>
+        </a>
+      </div>
+      <div class="tooltip">
+        <span class="show">John Doe</span>
+        <span>Logout</span>
+      </div>
+    </div>
+  </nav>

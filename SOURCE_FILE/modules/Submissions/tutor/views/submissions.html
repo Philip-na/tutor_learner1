@@ -1,0 +1,104 @@
+<main >
+  <?php var_dump($variable['submissions']); ?>
+  <h1>Submissions    
+  </h1>
+  <div id="myModal" class="modal">
+  </div>
+  <div class="cards">
+      <div class="card">
+        <div class="header">
+         
+          <p class="alert">Total Submissions
+              
+          </p>
+        </div>
+        <div class="graphs">
+          <span><?=count($variable['submissions']); ?></span>
+
+        </div>
+      </div>
+      <div class="card">
+        <div class="header">
+         
+          <p class="alert">Total Submissions</p>
+        </div>
+        <div class="graphs">
+          <span>15</span>
+          <div class="graph">
+
+          </div>
+        </div>
+      </div>
+         
+  </div>
+  <!-- input -->
+  
+  <div class="content">
+    <form id="animated">
+    <input type="text" name="search" placeholder="Search..">
+    </form>
+    <div class="table">
+      <section class="table__body">
+        <table>
+            <thead>
+                <tr>
+                    <th> <input type="checkbox"></th>
+                    <th> Student Name <span class="icon-arrow">&DownArrow;</span></th>
+                    <th> Course</th>
+                    
+                    <th>Submission Date</th>
+                    <th>Submission link</th>
+                    <th>Feedback</th>
+                    
+                    
+                    
+                </tr>
+            </thead>
+            <tbody>
+              <?php $i=1; foreach($variable['submissions'] as $s) { ?>
+                <tr>
+                    <td> <?=$i; ?> </td>
+                    <td>
+                      <?=$s->learner->username ?? '' ?>
+                    </td>
+                    <td> <?=$s->course->name ?? '' ?></td>  
+                    <td> 17 Dec, 2022 </td>
+                    <td><?=$s->link ?? '' ?> </td>
+                    <td><button class="feedback" id="popup-button">Feedback</button></td>
+                    
+                   
+                </tr>
+
+              <?php $i++; } ?>
+            </tbody>
+        </table>
+        <div class="table-btn">
+          <button class="pre">Previous</button>
+          <button class="next">Next</button>
+        </div>
+    </div>
+</div>
+<div id="popup-overlay">
+  <div id="popup-content">
+    <h2>Feedback</h2>
+    <p>Please enter the details of your feedback</p>
+    <br>
+    <form id="feedback-form">
+      <label for="name">Grade</label>
+      <input type="text" id="name" name="name" >
+      
+      <label for="email">Overall Evaluation</label>
+      <input type="email" id="email" name="email" >
+      
+      <label for="feedback">Suggestions for improvement</label>
+      <textarea id="feedback" name="feedback" ></textarea>
+      <div class="btns">
+        <button class="cancel">cancel</button>
+        <input type="submit" value="Submit">
+        
+      </div>
+      
+    </form>
+  </div>
+</div>
+</main>

@@ -1,0 +1,19 @@
+<script src="js/adminapp.js"></script>
+  <script src="js/admin/popup.js"></script>
+  <script src="js/admin/table.js"></script> 
+
+  <script>
+    function toggleForm() {
+      var checkbox = document.getElementById("toggleCheckbox");
+      var form = document.getElementById("popupForm");
+      form.style.display = checkbox.checked ? "block" : "none";
+    }
+
+    function submitForm() {
+      var checkbox = document.getElementById("toggleCheckbox");
+      checkbox.checked = true; // Set the checkbox as checked
+      var form = document.getElementById("popupForm");
+      form.style.display = "none"; // Hide the popup form
+      return false; // Prevent form submission
+    }
+  </script>

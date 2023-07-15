@@ -1,0 +1,49 @@
+<section class="courses-section">
+    <div class="flex">
+        <div class="course-card">
+            <h3>Curse Name: <?=$variable['course']->name ?? '' ?></h3>
+            <h3>Tutor Name: <?=$variable['tutor']->name ?? '' ?></h3>
+            <h3>Price: <?=$variable['course']->price ?? '' ?> UG</h3>
+            <p>Duration: <?=$variable['course']->duration ?? '' ?></p> 
+        </div>
+        </div>
+        <div class="table-container">
+          <h1>Topics in this course</h1>
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Name </th>
+                  <th>Topic details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php $i = 1; foreach($variable['topics'] as $t){ ?>
+                <tr>
+                  <td><?=$i; ?></td>
+                  <td><?=$t->name ?? ''; ?></td>
+                  <td><?=$t->topicdetiles ?? '' ?></td>
+                </tr>
+                <?php $i++; } ?>
+                <!-- Add more rows as needed -->
+              </tbody>
+            </table>
+          </div>
+          <?php if($variable['state']){ ?>
+            <a href="index.php?seo_name=enroll&amp;act=denroll&amp;id=<?=$variable['course']->id ?>"></a>
+                <button class="button">
+                  You Are enrolled 
+                  <div class="arrow">›</div>
+            </a>
+
+          <?php }else{ ?>
+            <a href="index.php?seo_name=enroll&amp;act=enroll&amp;id=<?=$variable['course']->id ?>">
+              <button class="button">
+                Confirm enrollment
+                <div class="arrow">›</div>
+            </a>
+          
+          <?php } ?>
+          
+         
+ </section>

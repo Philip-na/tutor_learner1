@@ -1,0 +1,152 @@
+
+<main >
+  <h1>Tutors
+    <button class="btn" id="myBtn"><i class="fas fa-plus"></i>Add Tutor</button>
+  </h1>
+  <!-- add tutor -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <form method="post" action="">
+        <h2>Add Tutor</h2>
+        <p>please enter the details for the Tutor</p>
+        <input type="hidden" name="savet" value="1">
+        <input type="hidden" name="role" value="tutor">
+        <div class="form-group">
+          <label for="name">Tutor Name</label>
+          <input type="text" id="name" name="username" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="session" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="session" name="password" value="Tutor@1234" required>
+        </div>
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number</label>
+          <input type="text" id="session" name="phone" required>
+        </div>
+        <div class="form-group">
+          <label for="area">Area(s) of Expertise</label>
+          <input type="text" id="session" name="session" >
+        </div>
+        <div class="form-group">
+          <label for="qualifications">Qualifications</label>
+          <input type="text" id="session" name="qualifications" required >
+        </div>
+       <div class="button">
+        <button class="btn1-submit">Cancel</button>
+        <input type="submit" value="Submit" class="btn2-submit">
+      </div>
+      </form>
+    </div>
+  </div>
+  <!-- edit tutor -->
+
+  <div class="cards">
+      <div class="card">
+        <div class="header">
+         
+          <p class="alert">Totsl Tutors
+            
+          </p>
+        </div>
+        <div class="graphs">
+          <span><?=count($variable['tutors']) ?? 0 ?></span>
+          
+        </div>
+      </div>
+      <div class="card">
+        <div class="header">
+         
+          <p class="alert">New mes</p>
+        </div>
+        <div class="graphs">
+          <span>15</span>
+
+        </div>
+        
+      </div>
+      <div class="card">
+        <div class="header">
+         
+          <p class="alert">New mes</p>
+        </div>
+        <div class="graphs">
+          <span>15</span>
+          <div class="graph">
+            
+          </div>
+        </div>
+      </div>
+         
+  </div>
+  
+  <!-- input -->
+  <div class="content">
+    <form id="animated">
+      <h2>Tutor Management</h2>
+    <input type="text" name="search" placeholder="Search..">
+    </form>
+    <div class="table">
+      <section class="table__body">
+        <table>
+            <thead>
+                <tr>
+                    <th> <input type="checkbox"></th>
+                    <th> Name <span class="icon-arrow">&DownArrow;</span></th>
+                    <th> Contact</th>
+                    <th> Email </th>
+                    <th>Qualifications</th>
+                    <th></th>
+                
+                </tr>
+            </thead>
+            <tbody>
+              <?php $i = 1; foreach($variable['tutors'] as $t) { ?>
+                <tr>
+                    <td> <?=$i ?? ''; ?> </td>
+                    <td><?=$t->username ?? ''; ?></td>
+                    <td>
+                      <?=$t->phone ?? ''; ?>
+                    </td>
+                    <td> <?=$t->email ?? ''; ?> </td>
+                    <td> <?=$t->qualifications ?? ''; ?> </td>
+                    <td>
+                      <div class="menu">
+                        <button class="actionBtn">Action</button>
+                        
+                        <ul class="menu-link">
+                          <li><a href="index.php?seo_name=tutors_admin&amp;act=delete&amp;id=<?=$t->id ?? ''; ?>">Delete</a></li>
+                          <li><a href="#">Edit</a></li>
+
+                        </ul>
+                      </div>
+                    </td>
+                    
+                   
+                </tr>
+                <?php $i++; } ?>
+            </tbody>
+        </table>
+        <div class="table-btn">
+          <button class="pre">Previous</button>
+          <button class="next">Next</button>
+        </div>
+    </div>
+</div>
+</main>
+
+<script >
+  const allaction = document.querySelectorAll('main .menu');
+
+ allaction.forEach(item=> {
+   const icon = item.querySelector('.actionBtn');
+   const menuLink = item.querySelector('.menu-link');
+ 
+   icon.addEventListener('click', function () {
+     menuLink.classList.toggle('show');
+   })
+ })
+</script>

@@ -1,0 +1,42 @@
+<nav>
+    <div class="logo">
+        <!-- <img src="logo.png" alt="Tutor Learning System Logo"> -->
+        <h1>Tutor Learning System</h1>
+    </div>
+    <div class="menu-toggle">
+        <div class="hamburger"></div>
+    </div>
+    <ul class="menu">
+      <?php if($_SESSION["is_admin"] ?? 0 == 1){ ?>
+        <?php if($_SESSION["user"]['role'] == "learner"){ ?>
+          <li><a href="ldashboard">Learner Dashboard</a></li>
+        <?php } ?>
+        <?php if($_SESSION["user"]['role'] == "admin"){ ?>
+          <li><a href="admin_dashboard">Admin Dashboard</a></li>
+        <?php } ?>
+        <?php if($_SESSION["user"]['role'] == "tutor"){ ?>
+          <li><a href="tutor_dashboard">Tutor Dashboard</a></li>
+        <?php } ?>
+
+        
+      <?php }else { ?>
+        <li><a href="">Home</a></li>
+      <?php } ?>
+        
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="tutor_dashboard">For Tutors</a></li>
+        <li><a href="#employers">For Employers</a></li>
+    </ul>
+    <div class="user-actions">
+      
+      <?php if($_SESSION["is_admin"] ?? 0 == 1){ ?>
+        <a href="index.php?module=dashboard&action=logout"><button id="signup" >logout</button></a>
+      <?php }else { ?>
+        <a href="index.php?module=dashboard&action=login"><button id="login">Login</button></a>
+        <a href="index.php?module=dashboard&action=signup"><button id="signup" >Sign Up</button></a>
+      <?php } ?>
+        
+       
+    </div>
+</nav>

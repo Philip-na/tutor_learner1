@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="css/signup1.css">
+    <style>
+      .error {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+      }
+
+      #errorContainer {
+        margin-top: 10px;
+      }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+          <h1>Sign Up</h1>
+          <p>Bridge the gap between the skills you have and the skills you need</p>
+          <form id="form" method="post" action="">
+            <input type="hidden" name="moduel" value="dashboard">
+            <input type="hidden" name="action"  value="signup">
+            <input type="hidden" name="postAction"  value="1">
+            <input type="hidden" name="role" value="learner">
+
+            <label for="name">Full Names*</label>
+            <input type="text" name="username" id="name" value="<?=htmlspecialchars($_POST['username'] ?? ''); ?>"  required>
+
+            <label for="email">Email*</label>
+            <input type="email" name="email" id="email" value="<?=htmlspecialchars($_POST['email'] ?? ''); ?>" required>
+
+            <label for="password">Password*</label>
+            <input type="password" name="password" id="password" value="<?=htmlspecialchars($_POST['password'] ?? ''); ?>" required>
+
+            <label for="confirmPassword">Confirm Password*</label>
+            <input type="password" name="confirm" id="confirmPassword" value="<?=htmlspecialchars($_POST['confirm'] ?? ''); ?>" required>
+
+            <label for="security-question">Security Question:</label>
+            <select id="security-question" name="s_question" required>
+              <option value=" " selected="">select a security question please</option>
+              <option value="q1">What is your mother's maiden name?</option>
+              <option value="q2">What is the name of your first pet?</option>
+              <option value="q3">What city were you born in?</option>
+            </select>
+
+            <label for="answer">Answer</label>
+            <input type="text" id="answer" name="answer" value="<?=htmlspecialchars($_POST['s_answer'] ?? ''); ?>" required>
+
+            <div id="errorContainer" class="error">
+                <?php foreach($_SESSION['validation']['errors'] ?? [] as $error) { ?>
+                 <p> <?=$error; ?> </p>
+                 <?php } ?>
+            </div>
+            <input class="button" type="submit" value="Sign Up">
+          </form>
+          <div class="accept">
+            <p>Already have an account <a href="index.php?module=dashboard&action=login">Login</a> </p>
+          </div>
+        </div>       
+        <div class="right">
+          <img src="Assets/Sign_up_img.png" alt="">
+        </div>      
+    </div>
+    
+    <script>
+      var form = document.getElementById("form");
+      var nameInput = document.getElementById("name");
+      var email = document.getElementById("email");
+      var password = document.getElementById("password");
+      var confirmPassword = document.getElementById("confirmPassword");
+      var errorContainer = document.getElementById("errorContainer");
+
+      form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        var isFormValid = true;
+        var errorMessages = [];
+
+        // Function to validate the name
+        function validateName(name) {
+          if (name.length >= 3 && /^[A-Za-z\s]+$/.test(name)) {
+            return true;
+          }
+          return false;
+        }
+
+        // Function to validate the email
+        function validateEmail(email) {
+          var emailPattern = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+          if (emailPattern.test(email)) {
+            return true;
+          }
+          return false;
+        }
+
+        // Validate the name
+        if (!validateName(nameInput.value)) {
+          isFormValid = false;
+          nameInput.classList.add("error");
+          errorMessages.push("Name must have at least 3 letters and no numbers.");
+        } else {
+          nameInput.classList.remove("error");
+        }
+
+        // Validate the email
+        if (!validateEmail(email.value)) {
+          isFormValid = false;
+          email.classList.add("error");
+          errorMessages.push("Please enter a valid email address.");
+        } else {
+          email.classList.remove("error");
+        }
+
+        // Check if all input fields have values
+        var inputs = form.querySelectorAll("input, select");
+        inputs.forEach(function(input) {
+          if (input.value.trim() === "") {
+            isFormValid = false;
+            input.classList.add("error");
+            errorMessages.push("Please fill in all required fields.");
+          } else {
+            input.classList.remove("error");
+          }
+        });
+
+        // Check if the passwords match
+        if (password.value !== confirmPassword.value) {
+          isFormValid = false;
+          password.classList.add("error");
+          confirmPassword.classList.add("error");
+          errorMessages.push("Passwords do not match.");
+        } else {
+          password.classList.remove("error");
+          confirmPassword.classList.remove("error");
+        }
+
+        // Validate the password length and characters
+        var passwordValue = password.value;
+        var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/;
+;
+        if (!passwordPattern.test(passwordValue)) {
+          isFormValid = false;
+          password.classList.add("error");
+          errorMessages.push("Password should be at least 8 characters long and contain at least one letter Upercass,number and a special charchater.");
+        } else {
+          password.classList.remove("error");
+        }
+
+        // Display error messages
+        errorContainer.innerHTML = "";
+        if (errorMessages.length > 0) {
+          errorMessages.forEach(function(message) {
+            var errorMessage = document.createElement("p");
+            errorMessage.textContent = message;
+            errorContainer.appendChild(errorMessage);
+          });
+        }
+
+        // Submit the form if all validations pass
+        if (isFormValid) {
+          form.submit();
+        }
+      });
+    </script>
+</body>
+</html>

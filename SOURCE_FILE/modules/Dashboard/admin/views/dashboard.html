@@ -1,0 +1,117 @@
+<main >
+  <h1>Welcome Back <?=$_SESSION['user']['name']; ?>
+    <!-- <button class="btn" id="myBtn"><i class="fas fa-plus"></i>Add Tutor</button> -->
+  </h1>
+ 
+<!-- toggle -->
+  <div class="cards">
+      <div class="card">
+        <div class="header">
+         
+          <p class="alert">Total Learners
+            
+          </p>
+        </div>
+        <div class="graphs">
+          <span><?=count($variable['learners']) ?? 0 ?></span>
+          <div class="graph">
+            
+          </div>
+        </div>
+        
+      </div>
+      <div class="card">
+        <div class="header">
+         
+          <p class="alert">Total Tutors</p>
+        </div>
+        <div class="graphs">
+          <span><?=count($variable['tutors']) ?? 0 ?></span>
+          <div class="graph">
+
+          </div>
+        </div>
+        
+      </div>
+      <div class="card">
+        <div class="header">
+         
+          <p class="alert">Tutor to Learner Ratio</p>
+        </div>
+        <div class="graphs">
+          <span><?=1 . ' :: ' . round($variable['ratio']) ?? '' ?> </span>
+          
+        </div>
+       
+      </div>   
+  </div>
+ 
+  <!-- input -->
+  <div class="content">
+    <h2>Leaner Management</h2>
+    <form id="animated">
+    <input type="text" name="search" placeholder="Search..">
+    </form>
+    <div class="table">
+      <section class="table__body">
+        <table>
+            <thead>
+                <tr>
+                    <th> <input type="checkbox"></th>
+                    <th> Name <span class="icon-arrow">&DownArrow;</span></th>
+                    <th> Email </th>
+                    <th> Active</th>
+                    <th>Completed</th>
+                    <th>Pending</th>
+                    <th>Date Joined</th>  
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+              <?php $i = 1; foreach($variable['learners'] as $l) { ?>
+                <tr>
+                    <td> <?=$i ?> </td>
+                    <td> <?=$l->username ?? '' ?></td>
+                    <td> <?=$l->email ?? '' ?> </td>
+                    <td> <?=count($l->active) ?? 0 ?></td>      
+                    <td> <?=count($l->completed) ?? '' ?> </td>
+                    <td> <?=count($l->pending) ?? '' ?></td>
+                    <td> <?=$l->created ?? '' ?> </td>
+                    <td>
+                      <div class="menu">
+                        <button class="actionBtn">Action</button>
+                        
+                        <ul class="menu-link">
+                          <li><a href="index.php?seo_name=admin_dashboard&amp;act=delete&amp;id=<?=$l->id ?>">Delete</a></li>
+                          <li><a href="#">Edit</a></li>
+
+                        </ul>
+                      </div> 
+                    </td>            
+                </tr>
+
+            </tbody>
+            <?php $i++; } ?>
+        </table>
+        <div class="table-btn">
+          <button class="pre">Previous</button>
+          <button class="next">Next</button>
+        </div>
+        
+    </div>
+</div>
+
+</main>
+
+<script >
+  const allaction = document.querySelectorAll('main .menu');
+
+ allaction.forEach(item=> {
+   const icon = item.querySelector('.actionBtn');
+   const menuLink = item.querySelector('.menu-link');
+ 
+   icon.addEventListener('click', function () {
+     menuLink.classList.toggle('show');
+   })
+ })
+</script>

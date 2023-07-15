@@ -1,0 +1,19 @@
+<script src="js/learner/app.js"></script>
+<script src="js/learner/popup.js"></script>
+<script src="js/learner/table.js"></script> 
+
+
+
+<script>
+    const numb = document.querySelector(".numb");
+    let counter = 0;
+    setInterval(()=>{
+      if(counter == 100){
+        clearInterval();
+      }else{
+        counter+=1;
+        numb.textContent = counter + "%";
+      }
+    }, 80);  
+
+</script>

@@ -1,0 +1,68 @@
+<main >
+  <h1>Course Details & Tracking</h1>
+
+  <div class="cards">
+    <div class="card">
+      <div class="header">
+       
+        <p class="alert">Course Tutor
+          
+        </p>
+      </div>
+      <h1>Nabende Peter</h1>
+      
+    </div>
+    <div class="card">
+      <div class="header">
+       
+        <p class="alert">Course Topic</p>
+      </div>
+       <h1>12</h1>
+    </div>
+    <div class="card">
+      <div class="header">
+       
+        <p class="alert">Course Coverage</p>
+      </div>
+       <h1>6 out Of 12</h1>
+    </div>   
+</div>
+  <!-- input -->
+  <div class="content">
+    <form id="animated">
+    <input type="text" name="search" placeholder="Search..">
+    </form>
+    <div class="table">
+      <section class="table__body">
+        <table>
+            <thead>
+                <tr>
+                    <th> <input type="checkbox"></th>
+                    <th> Course Name </th>
+                    <th> Topic </th>
+                    <th> Course Duration </th>
+                    <th>Prerequisites</th>
+                    <th>Assessment & Evaluation Technique</th>
+                    <th> Learning Outcome</th>        
+                </tr>
+            </thead>
+            <tbody>
+              <?php $i = 1; foreach($variable['courses'] as $c) { ?>
+                <tr>
+                    <td><?=$i; ?> </td>
+                    <td> <?=$c->name; ?></td>
+                    <td></td>
+                    <td>
+                  </td>      
+                </tr>
+              <?php $i = $i + 1; } ?>
+            </tbody>
+            
+        </table>
+        <div class="table-btn">
+          <button class="pre">Previous</button>
+          <button class="next">Next</button>
+        </div>
+    </div>
+</div>
+</main>
